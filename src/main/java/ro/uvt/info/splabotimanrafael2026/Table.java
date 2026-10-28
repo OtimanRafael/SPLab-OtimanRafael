@@ -1,6 +1,6 @@
 package ro.uvt.info.splabotimanrafael2026;
 
-public class Table implements Element {
+public class Table extends Element {
     private String title;
 
     public Table(String title) {

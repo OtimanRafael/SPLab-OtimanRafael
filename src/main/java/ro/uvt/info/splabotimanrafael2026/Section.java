@@ -3,7 +3,7 @@ package ro.uvt.info.splabotimanrafael2026;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Section implements Element {
+public class Section extends Element {
     private String title;
     private List<Element> children;
 
@@ -14,6 +14,10 @@ public class Section implements Element {
 
     @Override
     public void add(Element e) {
+        if (e.getParent() != null) {
+            throw new IllegalArgumentException("Acest element apartine deja altei sectiuni!");
+        }
+        e.setParent(this);
         children.add(e);
     }
 

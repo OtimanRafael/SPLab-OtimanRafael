@@ -1,6 +1,6 @@
 package ro.uvt.info.splabotimanrafael2026;
 
-public class TableOfContents implements Element {
+public class TableOfContents extends Element {
     @Override
     public void print() {
         System.out.println("Table of Contents");
