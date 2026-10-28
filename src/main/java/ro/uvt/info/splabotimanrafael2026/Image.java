@@ -1,10 +1,17 @@
 package ro.uvt.info.splabotimanrafael2026;
 
+import java.util.concurrent.TimeUnit;
+
 public class Image extends Element {
     private String imageName;
 
-    public Image(String imageName) {
-        this.imageName = imageName;
+    public Image(String name) {
+        imageName = name;
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
