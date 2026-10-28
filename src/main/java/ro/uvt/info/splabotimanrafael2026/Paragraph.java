@@ -35,4 +35,9 @@ public class Paragraph extends Element {
     public Element get(int index) {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitParagraph(this);
+    }
 }

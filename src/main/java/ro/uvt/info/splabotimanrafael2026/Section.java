@@ -12,6 +12,10 @@ public class Section extends Element {
         this.children = new ArrayList<>();
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     @Override
     public void add(Element e) {
         if (e.getParent() != null) {
@@ -36,6 +40,14 @@ public class Section extends Element {
         System.out.println(title);
         for (Element child : children) {
             child.print();
+        }
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitSection(this);
+        for (Element child : children) {
+            child.accept(visitor);
         }
     }
 }
