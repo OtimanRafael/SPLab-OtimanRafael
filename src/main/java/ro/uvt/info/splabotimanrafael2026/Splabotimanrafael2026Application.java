@@ -1,34 +1,34 @@
 package ro.uvt.info.splabotimanrafael2026;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import ro.uvt.info.splabotimanrafael2026.difexamples.ClientComponent;
+import ro.uvt.info.splabotimanrafael2026.difexamples.SingletonComponent;
+import ro.uvt.info.splabotimanrafael2026.difexamples.TransientComponent;
 
 @SpringBootApplication
 public class Splabotimanrafael2026Application {
 
-    public static void main(String[] args) throws Exception {
-        Section cap1 = new Section("Capitolul 1");
-        
-        Paragraph p1 = new Paragraph("Paragraph 1");
-        cap1.add(p1);
-        Paragraph p2 = new Paragraph("Paragraph 2");
-        cap1.add(p2);
-        Paragraph p3 = new Paragraph("Paragraph 3");
-        cap1.add(p3);
-        Paragraph p4 = new Paragraph("Paragraph 4");
-        cap1.add(p4);
-        
-        cap1.add(new ImageProxy("ImageOne"));
-        cap1.add(new Image("ImageTwo"));
-        cap1.add(new Paragraph("Some text"));
-        cap1.add(new Table("Table 1"));
-        
-        BookStatistics stats = new BookStatistics();
-        cap1.accept(stats);
-        stats.printStatistics();
+    public static void main(String[] args) {
+        ApplicationContext context = SpringApplication.run(Splabotimanrafael2026Application.class, args);
 
-        GenerateToC tocGenerator = new GenerateToC();
-        cap1.accept(tocGenerator);
-        TableOfContents toc = tocGenerator.getToC();
-        toc.print();
+        TransientComponent transientBean = context.getBean(TransientComponent.class);
+        transientBean.operation();
+
+        transientBean = context.getBean(TransientComponent.class);
+        transientBean.operation();
+
+        SingletonComponent singletonBean = context.getBean(SingletonComponent.class);
+        singletonBean.operation();
+
+        singletonBean = context.getBean(SingletonComponent.class);
+        singletonBean.operation();
+
+        ClientComponent c = context.getBean(ClientComponent.class);
+        c.operation();
+
+        c = (ClientComponent)context.getBean("clientComponent");
+        c.operation();
     }
 }
