@@ -1,22 +1,24 @@
 package ro.uvt.info.splabotimanrafael2026;
 
-import java.util.concurrent.TimeUnit;
+import jakarta.persistence.Entity;
+import lombok.NoArgsConstructor;
 
+@Entity
+@NoArgsConstructor(force = true)
 public class Image extends Element {
-    private String imageName;
+    private String url;
 
-    public Image(String name) {
-        imageName = name;
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public Image(String url) {
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     @Override
     public void print() {
-        System.out.println("Image with name: " + imageName);
+        System.out.println("Image with name: " + url);
     }
 
     @Override

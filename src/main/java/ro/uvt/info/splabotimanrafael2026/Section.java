@@ -1,15 +1,21 @@
 package ro.uvt.info.splabotimanrafael2026;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@NoArgsConstructor(force = true)
 public class Section extends Element {
     private String title;
-    private List<Element> children;
+    
+    @OneToMany(targetEntity = Element.class)
+    private List<Element> children = new ArrayList<>();
 
     public Section(String title) {
         this.title = title;
-        this.children = new ArrayList<>();
     }
 
     public String getTitle() {

@@ -1,9 +1,10 @@
 package ro.uvt.info.splabotimanrafael2026.commands;
 
+import ro.uvt.info.splabotimanrafael2026.Book;
 import ro.uvt.info.splabotimanrafael2026.services.BooksService;
 import java.util.List;
 
-public class GetBooksCommand implements Command<List<String>> {
+public class GetBooksCommand implements Command<List<Book>> {
     private final BooksService booksService;
 
     public GetBooksCommand(BooksService booksService) {
@@ -11,7 +12,7 @@ public class GetBooksCommand implements Command<List<String>> {
     }
 
     @Override
-    public List<String> execute() {
+    public List<Book> execute() {
         return booksService.getAllBooks();
     }
 }

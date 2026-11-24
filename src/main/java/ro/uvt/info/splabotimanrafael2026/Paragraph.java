@@ -1,24 +1,24 @@
 package ro.uvt.info.splabotimanrafael2026;
 
+import jakarta.persistence.Entity;
+import lombok.NoArgsConstructor;
+
+@Entity
+@NoArgsConstructor(force = true)
 public class Paragraph extends Element {
     private String text;
-    private AlignStrategy textAlignment;
 
     public Paragraph(String text) {
         this.text = text;
     }
 
-    public void setAlignStrategy(AlignStrategy strategy) {
-        this.textAlignment = strategy;
+    public String getText() {
+        return text;
     }
 
     @Override
     public void print() {
-        if (textAlignment != null) {
-            textAlignment.render(text);
-        } else {
-            System.out.println("Paragraph: " + text);
-        }
+        System.out.println("Paragraph: " + text);
     }
 
     @Override

@@ -1,18 +1,26 @@
 package ro.uvt.info.splabotimanrafael2026.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+import ro.uvt.info.splabotimanrafael2026.Book;
+import ro.uvt.info.splabotimanrafael2026.persistence.CrudRepository;
+
 import java.util.List;
 
 @Service
 public class BooksService {
-    private final List<String> books = new ArrayList<>();
+    private final CrudRepository<Book, Long> crudRepository;
 
-    public BooksService() {
-        books.add("Enciclopedia Fenomenelor Inexplicabile");
+    @Autowired
+    public BooksService(CrudRepository<Book, Long> crudRepository) {
+        this.crudRepository = crudRepository;
     }
 
-    public List<String> getAllBooks() {
-        return books;
+    public List<Book> getAllBooks() {
+        return crudRepository.findAll();
+    }
+
+    public void addBook(Book book) {
+        crudRepository.save(book);
     }
 }

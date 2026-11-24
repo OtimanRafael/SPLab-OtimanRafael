@@ -1,18 +1,26 @@
 package ro.uvt.info.splabotimanrafael2026;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
+import lombok.NoArgsConstructor;
+
+@Entity
+@NoArgsConstructor(force = true)
 public class ImageProxy extends Element {
     private String url;
-    private Image realImg;
+    
+    @Transient
+    private Image realImage;
 
     public ImageProxy(String url) {
         this.url = url;
     }
 
-    private Image loadImage() {
-        if (realImg == null) {
-            realImg = new Image(url);
+    public Image loadImage() {
+        if (realImage == null) {
+            realImage = new Image(url);
         }
-        return realImg;
+        return realImage;
     }
 
     @Override

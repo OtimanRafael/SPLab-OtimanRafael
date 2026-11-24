@@ -1,14 +1,20 @@
 package ro.uvt.info.splabotimanrafael2026;
 
-public abstract class Element {
-    private Element parent;
+import jakarta.persistence.*;
 
-    public Element getParent() {
-        return parent;
-    }
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Element {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     public void setParent(Element parent) {
-        this.parent = parent;
+    }
+
+    public Element getParent() {
+        return null;
     }
 
     public abstract void print();

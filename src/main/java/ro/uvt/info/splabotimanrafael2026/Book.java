@@ -1,26 +1,31 @@
 package ro.uvt.info.splabotimanrafael2026;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@NoArgsConstructor(force = true)
 public class Book extends Section {
-    private List<Author> authors;
+    
+    @ManyToMany
+    private List<Author> authors = new ArrayList<>();
 
     public Book(String title) {
         super(title);
-        this.authors = new ArrayList<>();
     }
 
     public void addAuthor(Author author) {
         authors.add(author);
     }
 
-    public void addContent(Element e) {
-        super.add(e);
-    }
-
     @Override
     public void accept(Visitor visitor) {
         visitor.visitBook(this);
+        super.accept(visitor);
     }
 }
