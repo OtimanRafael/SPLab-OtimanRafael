@@ -20,7 +20,7 @@ public class BooksService {
         return crudRepository.findAll();
     }
 
-    public void addBook(Book book) {
-        crudRepository.save(book);
+    public Book addBook(Book book) {
+        return crudRepository.save(book);
     }
 }

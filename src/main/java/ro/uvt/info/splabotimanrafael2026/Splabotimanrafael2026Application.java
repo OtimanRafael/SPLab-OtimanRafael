@@ -3,6 +3,9 @@ package ro.uvt.info.splabotimanrafael2026;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ro.uvt.info.splabotimanrafael2026.difexamples.ClientComponent;
 import ro.uvt.info.splabotimanrafael2026.difexamples.SingletonComponent;
 import ro.uvt.info.splabotimanrafael2026.difexamples.TransientComponent;
@@ -28,7 +31,17 @@ public class Splabotimanrafael2026Application {
         ClientComponent c = context.getBean(ClientComponent.class);
         c.operation();
 
-        c = (ClientComponent)context.getBean("clientComponent");
+        c = (ClientComponent) context.getBean("clientComponent");
         c.operation();
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**");
+            }
+        };
     }
 }
